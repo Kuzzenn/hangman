@@ -1,0 +1,248 @@
+#include<iostream>
+#include<string>
+#include<ctime>
+#include<cstdlib>
+#include<iomanip>
+//#include<thread>
+//#include<chrono>
+
+using namespace std;
+
+int selectcountry();
+int size(string);
+void guess(int length,char s[],char ss[]);
+void display(int);
+
+
+int main(){
+	srand(time(0));
+	int length;
+	
+string countries[]={"algeria","russia","romania","kazakistan","luxemburg","kenya","myanmar","madagascar","angola","brazil","argentina","portugal","spain"};
+string mystring=countries[selectcountry()];
+length=size(mystring);
+char s[length];
+char ss[length];
+
+
+for(int i=0;i<length;i++)
+{	s[i]=mystring[i];   }
+
+for(int i=0;i<length;i++)
+{	ss[i]={'-'};}
+
+
+
+	cout<<"i have choosen a country guess it "<<endl;
+
+
+guess(length,s,ss);
+
+
+	
+	
+
+
+
+
+	
+}
+
+int selectcountry()
+{return rand()%13 ;}
+
+int size (string mystring)
+{int size=0;
+
+	while(mystring[size]!='\0'  )
+	{
+		size++;
+	}
+	return size;
+} 
+
+
+
+void guess(int length,char s[],char ss[])
+{
+	char guess;
+	char sss[48]={'0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'};
+	int k=0;
+	
+for(int  j=11;j>0;)
+{
+
+
+	for(int i=0;i<length;i++)
+	{
+	cout<<	ss[i];;
+	}
+	
+	
+	
+	cout<<"\t\t  chance s left    "<<j<<endl;;
+	display(j);
+	
+	cout<<endl<<endl;;
+	cout<<"enter the character ";
+	cin>>guess;
+	int b;
+	 b=0;
+	if(k==0)
+	{
+		sss[k]=guess;
+	}
+
+
+if (k > 0) {
+    sss[k] = guess;
+    for (int i = 0; i < k; i++) {
+        if (sss[i] == guess) {
+            cout << "alphabet already entered" << endl;
+            b = 1;
+            break;
+        }
+    }
+}
+
+if (b == 1) {
+    k--; // Decrement k to overwrite the previous character
+    continue; // Continue the loop without incrementing k
+}
+	k++;
+	
+		
+	int a ;
+	a=0;
+	for(int i=0;i<length;i++)
+	{
+	 
+	if(	s[i]==guess)
+	{
+		
+		ss[i]=guess;
+		a=1;
+		
+	}
+
+
+	}
+	if(a==0)
+	{	j=j-1;	}
+
+int 	counter;
+counter=0;
+	for(int i=0;i<length;i++)
+	{
+		if(s[i]==ss[i])
+		{
+			counter++;
+		}
+	}
+	if(counter==length)
+	{
+		cout<<"you won\n"<<"your answer is  "<<string(ss);
+		return;
+	}
+//	this_thread::sleep_for(chrono::seconds(4));
+	system("cls");
+
+	
+}
+
+
+display(0);
+
+
+cout<<"you lost"<<endl;
+cout<<"your answer is "<<string(s);
+return;
+}
+
+
+void display(int j)
+{
+	
+	
+	
+	 if (j == 10) {
+        
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+    }
+    if (j == 9) {
+        
+        cout << "  +---+" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+    }
+    if (j == 8) {
+    	cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "      |" << endl;
+        
+    }
+    if (j == 7) {
+    	cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  |   |" << endl;
+        
+    }
+    if (j == 6) {
+    	cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O    " << endl;	
+        
+    }
+    
+    if (j == 5) {
+    	cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O    " << endl;
+        cout << "  |    " << endl;	
+       
+    }
+    if (j == 4) {
+    	cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O    " << endl;
+        cout << " /|  " << endl;	
+        
+    }
+    if (j == 3) {
+        
+       	cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O    " << endl;
+        cout << " /|\\  " << endl;	
+        
+    }
+    if (j == 2) {
+    	cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O    " << endl;
+        cout << " /|\\  " << endl;	
+        cout << " /   " << endl;
+        
+        
+    }
+    if (j == 1) {
+    	cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O    " << endl;
+        cout << " /|\\ " << endl;	
+        cout << " / \\  " << endl;
+        
+    }
+    if (j == 0) {
+        cout << "----     ----- " << endl;
+        cout << "GAME OVER!" << endl;
+    }
+}
+
